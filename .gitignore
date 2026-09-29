@@ -1,0 +1,13 @@
+target/
+build/
+*.class
+.idea/
+.settings/
+.classpath
+.project
+APDescription
+MTPs-Main-Container.txt
+APDescription.txt
+bin/
+output/reports/
+output/logs/
