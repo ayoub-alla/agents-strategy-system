@@ -4,10 +4,10 @@ import app.Config;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
 import org.json.JSONObject;
 import utils.Logger;
-import app.Config;
 
 import java.util.Scanner;
 
@@ -28,22 +28,33 @@ public class ManagerAgent extends Agent {
         
         
         if (idea.isBlank()) { fail("Empty project idea."); return; }
-        
-        // logs
-        Logger.log("user", "idea: " + idea);
 
-        // asked once, right after the idea and before any document gets generated get the path from user if no default
-        outputPath = askOutputPath();
-        Logger.log("manager", "output path: " + outputPath);
 
-        Logger.log("manager", "Starting analysis...");
-        
-        
-        // the two analyses are independent, so both requests go out at once
-        // request ( name of agent , id of communications , prompt )
-        request(Config.BUSINESS_ANALYST, Config.BUSINESS, idea);
-        request(Config.MARKET_RISK, Config.MARKET, idea);
-        
+        addBehaviour(new OneShotBehaviour() {
+            @Override
+            public void action() {
+
+                Logger.log("user", "idea: " + idea);
+
+                outputPath = askOutputPath();
+                Logger.log("manager", "output path: " + outputPath);
+
+                Logger.log("manager", "Starting analysis...");
+
+                request(
+                        Config.BUSINESS_ANALYST,
+                        Config.BUSINESS,
+                        idea
+                );
+
+                request(
+                        Config.MARKET_RISK,
+                        Config.MARKET,
+                        idea
+                );
+            }
+        });
+
       
         // a cyclic behaviour for listening to messages coming , as the manager agent works like an orchestrator
         addBehaviour(new CyclicBehaviour() {
