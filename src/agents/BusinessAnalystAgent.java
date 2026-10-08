@@ -7,20 +7,16 @@ import app.Config;
 
 //since the 3 agents BusinessAnalystAgent , MarketRiskAgent , StrategyAgent , have some stracture of recieving messages and send them back
 //we extend A WorkerAgent class to avoid duplications
-
-public class BusinessAnalystAgent extends WorkerAgent {
-
-	
-    private static final String PROMPT = """
-            You are a senior business analyst. Analyze this project idea:
+private static final String PROMPT = """
+            Vous êtes un senior business analyst. Analysez cette idée de projet :
             
             %s
 
-            Return a JSON object with exactly these keys:
-            "problemDefinition": a paragraph string describing the problem and why it matters
-            "targetUsers": an array of user segments, each with their needs and pain points
-            "objectives": an array of measurable project objectives
-            "businessAnalysis": an array of required resources, functional requirements and constraints
+            Renvoyez un objet JSON avec exactement ces clés :
+            "problemDefinition": une string sous forme de paragraphe décrivant le problème et son importance
+            "targetUsers": un array de segments utilisateurs, chacun avec leurs besoins et pain points
+            "objectives": un array d'objectifs de projet mesurables
+            "businessAnalysis": un array de ressources requises, exigences fonctionnelles et contraintes
             """;
     
     // the id for conversation of businessanalyst agent
