@@ -10,19 +10,20 @@ import app.Config;
 
 public class BusinessAnalystAgent extends WorkerAgent {
 
-	
-    private static final String PROMPT = """
-            You are a senior business analyst. Analyze this project idea:
-            
-            %s
 
-            Return a JSON object with exactly these keys:
-            "problemDefinition": a paragraph string describing the problem and why it matters
-            "targetUsers": an array of user segments, each with their needs and pain points
-            "objectives": an array of measurable project objectives
-            "businessAnalysis": an array of required resources, functional requirements and constraints
-            """;
-    
+    private static final String PROMPT = """
+        Tu es un analyste métier senior. Analyse cette idée de projet :
+
+        %s
+
+        Réponds uniquement en français.
+
+        Retourne un objet JSON avec exactement ces clés :
+        "problemDefinition": un paragraphe décrivant le problème et son importance
+        "targetUsers": un tableau contenant les segments d'utilisateurs avec leurs besoins et difficultés
+        "objectives": un tableau contenant les objectifs mesurables du projet
+        "businessAnalysis": un tableau contenant les ressources nécessaires, les exigences fonctionnelles et les contraintes
+        """;
     // the id for conversation of businessanalyst agent
     @Override protected String topic() { return Config.BUSINESS; }
 
