@@ -243,10 +243,15 @@ public final class PdfService {
 
     private static Color severityColor(String text, Color fallback) {
         String lower = text.toLowerCase();
-        if (lower.contains("high")) return HIGH;
-        if (lower.contains("medium")) return MEDIUM;
-        if (lower.contains("low")) return LOW;
-        return fallback;
+        if (!lower.contains("élevé") && !lower.contains("eleve")) {
+            if (lower.contains("moyen")) {
+                return MEDIUM;
+            } else {
+                return lower.contains("faible") ? LOW : fallback;
+            }
+        } else {
+            return HIGH;
+        }
     }
 
     private static List<String> wrap(String text, PDFont font, float size, float maxWidth) throws IOException {

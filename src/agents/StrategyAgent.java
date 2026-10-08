@@ -12,18 +12,24 @@ public class StrategyAgent extends WorkerAgent {
 
     private static final String PROMPT = """
     		
-            You are a senior strategy consultant. Below are a project idea, its business analysis
-            and its market/risk analysis (JSON):
-            
-            %s
+        Vous êtes un consultant senior en stratégie. Vous trouverez ci-dessous une idée de projet, son analyse commerciale
+        et son analyse du marché et des risques (au format JSON) :
 
-            Use ALL of it to define the final strategy. Return a JSON object with exactly these keys:
-            "projectOverview": a paragraph string summarizing the project, its value and scope
-            "strategy": an array of proposed strategy priorities and key recommendations
-            "roadmap": an array of phased roadmap steps, each naming its timeline and deliverables
-            "conclusion": a paragraph string with a closing assessment and immediate next steps
+        %s
+
+        Utilisez TOUTES ces informations pour définir la stratégie finale.
+
+        Retournez un objet JSON contenant exactement les clés suivantes :
+
+        "projectOverview" : un paragraphe résumant le projet, sa valeur ajoutée et son périmètre.
+
+        "strategy" : un tableau présentant les priorités stratégiques proposées et les principales recommandations.
+
+        "roadmap" : un tableau décrivant les étapes du plan de mise en œuvre, chacune précisant son calendrier et ses livrables.
+
+        "conclusion" : un paragraphe présentant l'évaluation finale du projet et les prochaines actions à entreprendre. """ ;
             
-            """;
+
 
     // the id for conversation of strategy agent
     @Override protected String topic() { return Config.STRATEGY; }

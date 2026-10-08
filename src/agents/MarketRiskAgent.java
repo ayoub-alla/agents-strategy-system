@@ -11,15 +11,22 @@ import app.Config;
 public class MarketRiskAgent extends WorkerAgent {
 
     private static final String PROMPT = """
-            You are a market and risk analyst , Analyze this project idea:
-            
-            %s
 
-            Return a JSON object with exactly these keys:
-            "marketAnalysis": an array covering market size/trends, competitors, opportunities and threats
-            "risks": an array of objects, each with keys "risk", "likelihood" (Low/Medium/High),
-                     "impact" (Low/Medium/High) and "mitigation"
-            """;
+    Vous êtes un analyste de marché et des risques.
+    Analysez l'idée de projet suivante :
+
+    %s
+
+    Retournez un objet JSON contenant exactement les clés suivantes :
+
+    "marketAnalysis" : un tableau présentant la taille du marché, les tendances du marché, les concurrents, les opportunités et les menaces.
+
+    "risks" : un tableau d'objets, chacun contenant les clés suivantes :
+        "risk" : description du risque
+        "likelihood" : probabilité (Low/Medium/High)
+        "impact" : impact (Low/Medium/High)
+        "mitigation" : mesures d'atténuation du risque
+        """;
 
     // the id for conversation of marketrisk agent
     @Override protected String topic() { return Config.MARKET; }
