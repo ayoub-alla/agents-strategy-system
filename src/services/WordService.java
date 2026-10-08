@@ -18,13 +18,13 @@ import java.util.List;
 
 /** Builds the Word (.docx) report with POI: logo + link banner, shaded headings, bullets and a real risk table. */
 public final class WordService {
-    private static final String ACCENT = "0F6E56";
-    private static final String ACCENT_LIGHT = "E1F5EE";
+    private static final String ACCENT = "3478dc";
+    private static final String ACCENT_LIGHT = "AECBF6";
     private static final String ROW_ALT = "F2F2F2";
     private static final String HIGH = "C83C3C";
     private static final String MEDIUM = "C89628";
     private static final String LOW = "469656";
-    private static final String[] RISK_HEADERS = { "Risk", "Likelihood", "Impact", "Mitigation" };
+    private static final String[] RISK_HEADERS = { "Risque", "Probabilité", "Impact", "Mesure d'atténuation" };
 
     private WordService() {}
 
@@ -153,10 +153,18 @@ public final class WordService {
     // only Likelihood (col 1) and Impact (col 2) get colored text; Risk/Mitigation stay plain
     private static String severityColor(int col, String text) {
         if (col != 1 && col != 2) return "000000";
+
         String t = text.toLowerCase();
-        if (t.contains("high")) return HIGH;
-        if (t.contains("medium")) return MEDIUM;
-        if (t.contains("low")) return LOW;
+
+        if (t.contains("élevé") || t.contains("eleve"))
+            return HIGH;
+
+        if (t.contains("moyen"))
+            return MEDIUM;
+
+        if (t.contains("faible"))
+            return LOW;
+
         return "000000";
     }
 

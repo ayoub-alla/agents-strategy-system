@@ -27,7 +27,7 @@ public final class PdfService {
     private static final PDType1Font REGULAR = new PDType1Font(Standard14Fonts.FontName.HELVETICA);
     private static final PDType1Font BOLD = new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
 
-    private static final Color ACCENT = new Color(15, 110, 86);
+    private static final Color ACCENT = new Color(52, 120, 220);
     private static final Color ACCENT_LIGHT = new Color(225, 245, 238);
     private static final Color TEXT = new Color(40, 40, 40);
     private static final Color ROW_ALT = new Color(245, 245, 245);
@@ -35,7 +35,7 @@ public final class PdfService {
     private static final Color HIGH = new Color(200, 60, 60);
     private static final Color MEDIUM = new Color(200, 150, 40);
     private static final Color LOW = new Color(70, 150, 90);
-    private static final String[] RISK_HEADERS = { "Risk", "Likelihood", "Impact", "Mitigation" };
+    private static final String[] RISK_HEADERS = { "Risque", "Probabilité", "Impact", "Mesure d'atténuation" };
     private static final float[] RISK_WEIGHTS = { 0.30f, 0.15f, 0.15f, 0.40f };
 
     private PdfService() {}
@@ -243,9 +243,16 @@ public final class PdfService {
 
     private static Color severityColor(String text, Color fallback) {
         String lower = text.toLowerCase();
-        if (lower.contains("high")) return HIGH;
-        if (lower.contains("medium")) return MEDIUM;
-        if (lower.contains("low")) return LOW;
+
+        if (lower.contains("élevé") || lower.contains("eleve"))
+            return HIGH;
+
+        if (lower.contains("moyen"))
+            return MEDIUM;
+
+        if (lower.contains("faible"))
+            return LOW;
+
         return fallback;
     }
 

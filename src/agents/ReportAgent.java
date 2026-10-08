@@ -17,21 +17,19 @@ import java.util.List;
 
 public class ReportAgent extends WorkerAgent {
 
-    private static final String TITLE = "Project Strategy Report";
+    private static final String TITLE = "Rapport de Stratégie du Projet";
 
-    // JSON key -> section heading, in report order. "risks" is handled separately as a table.
-    
     private static final String[][] SECTIONS = {
-            { "projectOverview",   "Project Overview" }, // initial prompt from user
-            { "problemDefinition", "Problem Definition" }, // BusinessAnalyst Agent
-            { "targetUsers",       "Target Users" }, // BusinessAnalyst Agent
-            { "objectives",        "Objectives" }, // BusinessAnalyst Agent
-            { "businessAnalysis",  "Business Analysis" }, // BusinessAnalyst Agent
-            { "marketAnalysis",    "Market Analysis" }, // MarketRisk Agent
-            { "risks",             "Risks" }, // MarketRisk Agent
-            { "strategy",          "Proposed Strategy" }, // Strategy Agent
-            { "roadmap",           "Implementation Roadmap" }, // Strategy Agent
-            { "conclusion",        "Conclusion" } // Strategy Agent
+            { "projectOverview",   "Présentation du projet" },
+            { "problemDefinition", "Définition du problème" },
+            { "targetUsers",       "Utilisateurs cibles" },
+            { "objectives",        "Objectifs" },
+            { "businessAnalysis",  "Analyse métier" },
+            { "marketAnalysis",    "Analyse du marché" },
+            { "risks",             "Risques" },
+            { "strategy",          "Stratégie proposée" },
+            { "roadmap",           "Feuille de route de mise en œuvre" },
+            { "conclusion",        "Conclusion" }
     };
     
    
